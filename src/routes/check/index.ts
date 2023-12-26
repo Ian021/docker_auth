@@ -3,10 +3,26 @@ import { sequelize } from '../../models'
 
 const checkRouter = Router()
 
+/*
+  #swagger.start
+  #swagger.tags = ['Check']
+
+  #swagger.path = '/check/'
+  #swagger.method = 'get'
+  #swagger.end
+*/
 checkRouter.get('/', (req, res) => {
   res.send({ status: 'OK' })
 })
 
+/*
+  #swagger.start
+  #swagger.tags = ['Check']
+
+  #swagger.path = '/check/db'
+  #swagger.method = 'get'
+  #swagger.end
+*/
 checkRouter.get('/db', async (req, res) => {
   try {
     await sequelize.authenticate()

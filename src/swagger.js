@@ -11,6 +11,17 @@ const doc = {
     consumes: ['application/json'],
     produces: ['application/json'],
   },
+
+  tags: [
+    {
+      name: 'Check',
+      description: 'verificações do funcionamento do servidor e banco de dados',
+    },
+    {
+      name: 'Users',
+      description: 'API de usuários',
+    },
+  ],
   host: 'localhost:4000',
 }
 

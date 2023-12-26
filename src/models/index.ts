@@ -1,4 +1,5 @@
 import { Sequelize, DataTypes } from 'sequelize'
+import { User } from './users'
 
 const sequelize = new Sequelize('test_db', 'root', 'ian123', {
   host: '172.16.238.10',
@@ -6,4 +7,10 @@ const sequelize = new Sequelize('test_db', 'root', 'ian123', {
   port: 3306,
 })
 
-export { sequelize }
+const models = {
+  user: User(sequelize, DataTypes),
+}
+
+sequelize.sync({ force: true })
+
+export { models, sequelize }
