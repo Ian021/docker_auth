@@ -3,7 +3,7 @@ import swaggerUi from 'swagger-ui-express'
 import { app } from './server'
 import swaggerDocs from './swagger.json'
 
-const port = 4000
+const port = process.env.PORT
 
 app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 

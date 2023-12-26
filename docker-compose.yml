@@ -23,6 +23,13 @@ services:
       dockerfile: ./Dockerfile
     image: test_server
     restart: always
+    environment:
+      PORT: 4000
+      MYSQL_PORT: 3306
+      MYSQL_HOST: '172.16.238.10'
+      MYSQL_DATABASE: 'test_db'
+      MYSQL_USERNAME: 'root'
+      MYSQL_ROOT_PASSWORD: 'ian123'
     depends_on:
       - db
     ports:
