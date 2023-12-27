@@ -1,11 +1,11 @@
 import bcrypt from 'bcrypt'
 import { Sequelize } from 'sequelize'
 
-export const User = (
+const User = (
   sequelize: Sequelize,
   DataTypes: typeof import('sequelize/types/data-types')
 ) => {
-  return sequelize.define(
+  const User = sequelize.define(
     'User',
     {
       id: {
@@ -15,11 +15,6 @@ export const User = (
         allowNull: false,
       },
       cpf: {
-        type: DataTypes.STRING,
-        unique: true,
-        allowNull: false,
-      },
-      senha: {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false,
@@ -73,4 +68,8 @@ export const User = (
       timestamps: true,
     }
   )
+
+  return User
 }
+
+export { User }
