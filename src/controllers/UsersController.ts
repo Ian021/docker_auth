@@ -4,7 +4,10 @@ import { models } from '../models'
 export const UsersController = {
   get: async (req: Request, res: Response) => {
     try {
-      const user = await models.user.findAll()
+      const admin = req.user as any
+      const adminId = admin?.dataValues?.id
+
+      const user = await models.user.findAll({ where: { createdBy: adminId } })
 
       return res.status(200).send(user)
     } catch (e) {
@@ -13,10 +16,15 @@ export const UsersController = {
   },
 
   getById: async (req: Request, res: Response) => {
-    const id = req.params.id
-
     try {
-      const user = await models.user.findOne({ where: { id } })
+      const id = req.params.id
+
+      const admin = req.user as any
+      const adminId = admin?.dataValues?.id
+
+      const user = await models.user.findOne({
+        where: { id, createdBy: adminId },
+      })
 
       if (!user) {
         return res.status(404).send()
@@ -30,6 +38,11 @@ export const UsersController = {
 
   post: async (req: Request, res: Response) => {
     try {
+      const admin = req.user as any
+      const adminId = admin?.dataValues?.id
+
+      req.body.createdBy = adminId
+
       const user = await models.user.create(req.body)
 
       return res.status(200).send(user)
@@ -39,10 +52,17 @@ export const UsersController = {
   },
 
   put: async (req: Request, res: Response) => {
-    const id = req.params.id
-
     try {
-      const user = await models.user.findOne({ where: { id } })
+      const id = req.params.id
+
+      const admin = req.user as any
+      const adminId = admin?.dataValues?.id
+
+      req.body.updatedBy = adminId
+
+      const user = await models.user.findOne({
+        where: { id, createdBy: adminId },
+      })
 
       if (!user) {
         return res.status(404).send()
@@ -57,16 +77,25 @@ export const UsersController = {
   },
 
   delete: async (req: Request, res: Response) => {
-    const id = req.params.id
-
     try {
-      const user = await models.user.findOne({ where: { id } })
+      const id = req.params.id
+
+      const admin = req.user as any
+      const adminId = admin?.dataValues?.id
+
+      const user = await models.user.findOne({
+        where: { id, createdBy: adminId },
+      })
 
       if (!user) {
         return res.status(404).send()
       }
 
-      await models.user.destroy(user)
+      user.deletedBy = adminId
+      user.deletedAt = new Date()
+      user.ativo = false
+
+      user.save()
 
       return res.status(204).send()
     } catch (e) {

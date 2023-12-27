@@ -41,17 +41,17 @@ const User = (
         defaultValue: true,
       },
 
-      criadoPor: {
+      createdBy: {
         type: DataTypes.BIGINT,
         allowNull: true,
       },
 
-      atualizadoPor: {
+      updatedBy: {
         type: DataTypes.BIGINT,
         allowNull: true,
       },
 
-      removidoPor: {
+      removedBy: {
         type: DataTypes.BIGINT,
         allowNull: true,
       },
