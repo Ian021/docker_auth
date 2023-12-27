@@ -1,6 +1,34 @@
 import bcrypt from 'bcrypt'
 import { Sequelize } from 'sequelize'
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *         cpf:
+ *           type: string
+ *         nome:
+ *           type: string
+ *         nascimento:
+ *           type: string
+ *           format: date
+ *         endereco:
+ *           type: string
+ *         ativo:
+ *           type: boolean
+ *         createdBy:
+ *           type: integer
+ *         updatedBy:
+ *           type: integer
+ *         removedBy:
+ *           type: integer
+ */
+
 const User = (
   sequelize: Sequelize,
   DataTypes: typeof import('sequelize/types/data-types')

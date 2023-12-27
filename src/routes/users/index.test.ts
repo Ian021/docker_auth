@@ -16,7 +16,6 @@ describe('/POST Users', () => {
   it('responds with ok', async () => {
     const response = await request.post('/users')
     expect(response.status).toEqual(200)
-    // expect(response.body).toEqual('OK')
   })
 })
 
