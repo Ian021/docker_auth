@@ -1,7 +1,10 @@
+import passport from 'passport'
 import { UsersController } from '../../controllers/UsersController'
 import { Router } from 'express'
 
 const userRouter = Router()
+
+userRouter.use(passport.authorize('jwt', { session: false }))
 
 /*
     #swagger.start

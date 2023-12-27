@@ -6,7 +6,7 @@ export const UsersController = {
     try {
       const user = await models.user.findAll()
 
-      res.status(200).send(user)
+      return res.status(200).send(user)
     } catch (e) {
       res.status(500).send(e)
     }
@@ -19,10 +19,10 @@ export const UsersController = {
       const user = await models.user.findOne({ where: { id } })
 
       if (!user) {
-        res.status(404).send()
+        return res.status(404).send()
       }
 
-      res.status(200).send(user)
+      return res.status(200).send(user)
     } catch (e) {
       res.status(500).send(e)
     }
@@ -32,7 +32,7 @@ export const UsersController = {
     try {
       const user = await models.user.create(req.body)
 
-      res.status(200).send(user)
+      return res.status(200).send(user)
     } catch (e) {
       res.status(400).send(e)
     }
@@ -45,12 +45,12 @@ export const UsersController = {
       const user = await models.user.findOne({ where: { id } })
 
       if (!user) {
-        res.status(404).send()
+        return res.status(404).send()
       }
 
       const updatedUser = await models.user.update(user, req.body)
 
-      res.status(200).send(updatedUser)
+      return res.status(200).send(updatedUser)
     } catch (e) {
       res.status(400).send(e)
     }
@@ -63,12 +63,12 @@ export const UsersController = {
       const user = await models.user.findOne({ where: { id } })
 
       if (!user) {
-        res.status(404).send()
+        return res.status(404).send()
       }
 
       await models.user.destroy(user)
 
-      res.status(204).send()
+      return res.status(204).send()
     } catch (e) {
       res.status(500).send(e)
     }
