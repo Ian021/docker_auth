@@ -18,8 +18,13 @@ const doc = {
       description: 'verificações do funcionamento do servidor e banco de dados',
     },
     {
+      name: 'Auth',
+      description:
+        'API aberta de autenticação. Faça login para fazer a gestão de usuários',
+    },
+    {
       name: 'Users',
-      description: 'API de usuários',
+      description: 'API protegida de usuários. Faça login para utilizar',
     },
   ],
   host: 'localhost:4000',

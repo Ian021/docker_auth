@@ -24,8 +24,12 @@
       "description": "verificações do funcionamento do servidor e banco de dados"
     },
     {
+      "name": "Auth",
+      "description": "API aberta de autenticação. Faça login para fazer a gestão de usuários"
+    },
+    {
       "name": "Users",
-      "description": "API de usuários"
+      "description": "API protegida de usuários. Faça login para utilizar"
     }
   ],
   "schemes": [
@@ -49,6 +53,32 @@
       "get": {
         "tags": [
           "Check"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/auth/signin": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/auth/signup": {
+      "post": {
+        "tags": [
+          "Auth"
         ],
         "description": "",
         "responses": {

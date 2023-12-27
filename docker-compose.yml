@@ -25,6 +25,7 @@ services:
     restart: always
     environment:
       PORT: 4000
+      AUTH_KEY: '3ad12bee5652e3eb6042e911cb7bf7f4'
       MYSQL_PORT: 3306
       MYSQL_HOST: '172.16.238.10'
       MYSQL_DATABASE: 'test_db'

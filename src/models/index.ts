@@ -1,5 +1,6 @@
 import { Sequelize, DataTypes } from 'sequelize'
 import { User } from './users'
+import { Admin } from './admin'
 
 const sequelize = new Sequelize(
   process.env.MYSQL_DATABASE as string,
@@ -14,6 +15,7 @@ const sequelize = new Sequelize(
 
 const models = {
   user: User(sequelize, DataTypes),
+  admin: Admin(sequelize, DataTypes),
 }
 
 sequelize.sync({ force: true })
