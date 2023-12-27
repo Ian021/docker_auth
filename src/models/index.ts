@@ -18,6 +18,11 @@ const models = {
   admin: Admin(sequelize, DataTypes),
 }
 
-sequelize.sync({ force: true })
+sequelize.sync({
+  force: true,
+  logging(sql, timing) {
+    // avoid error when testing
+  },
+})
 
 export { models, sequelize }
