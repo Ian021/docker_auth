@@ -1,6 +1,21 @@
 import bcrypt from 'bcrypt'
 import { Sequelize } from 'sequelize'
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Admin:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *         username:
+ *           type: string
+ *         password:
+ *           type: string
+ */
+
 const Admin = (
   sequelize: Sequelize,
   DataTypes: typeof import('sequelize/types/data-types')

@@ -68,15 +68,12 @@ userRouter.get('/:id', UsersController.getById)
  *   post:
  *     summary: Criar usuário
  *     description: Cria um novo usuário e retorna o usuário criado.
- *     produces:
- *       - application/json
- *     parameters:
- *       - in: body
- *         name: body
- *         description: Objeto do usuário a ser criado
- *         required: true
- *         schema:
- *           $ref: '#/components/schemas/User'
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
  *     responses:
  *       201:
  *         description: Usuário criado com sucesso
@@ -95,8 +92,6 @@ userRouter.post('/', UsersController.post)
  *   put:
  *     summary: Atualizar usuário por ID
  *     description: Atualiza informações de um usuário criado por você.
- *     produces:
- *       - application/json
  *     parameters:
  *       - in: path
  *         name: id
@@ -104,12 +99,12 @@ userRouter.post('/', UsersController.post)
  *         required: true
  *         schema:
  *           type: integer
- *       - in: body
- *         name: body
- *         description: Objeto do usuário com as informações atualizadas
- *         required: true
- *         schema:
- *           $ref: '#/components/schemas/User'
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
  *     responses:
  *       200:
  *         description: Usuário atualizado com sucesso
@@ -130,8 +125,6 @@ userRouter.put('/:id', UsersController.put)
  *   delete:
  *     summary: Excluir usuário por ID
  *     description: Endpoint para excluir um usuário criado por você.
- *     produces:
- *       - application/json
  *     parameters:
  *       - in: path
  *         name: id
