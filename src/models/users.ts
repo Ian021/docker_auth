@@ -71,7 +71,12 @@ const User = (
 
       createdBy: {
         type: DataTypes.BIGINT,
-        allowNull: true,
+        allowNull: false,
+      },
+
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
       },
 
       updatedBy: {
@@ -79,19 +84,23 @@ const User = (
         allowNull: true,
       },
 
-      removedBy: {
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
+
+      deletedBy: {
         type: DataTypes.BIGINT,
+        allowNull: true,
+      },
+
+      deletedAt: {
+        type: DataTypes.DATE,
         allowNull: true,
       },
     },
     {
       tableName: 'Users',
-      hooks: {
-        beforeCreate: (user: any) => {
-          const salt = bcrypt.genSaltSync()
-          user.password = bcrypt.hashSync(user.password, salt)
-        },
-      },
       paranoid: true,
       timestamps: true,
     }

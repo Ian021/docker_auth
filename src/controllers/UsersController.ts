@@ -42,11 +42,15 @@ export const UsersController = {
       const adminId = admin?.dataValues?.id
 
       req.body.createdBy = adminId
+      req.body.updatedBy = adminId
+
+      console.log(req.body)
 
       const user = await models.user.create(req.body)
 
       return res.status(200).send(user)
     } catch (e) {
+      console.log(e)
       res.status(400).send(e)
     }
   },
@@ -68,9 +72,9 @@ export const UsersController = {
         return res.status(404).send()
       }
 
-      const updatedUser = await models.user.update(user, req.body)
+      user.update(req.body)
 
-      return res.status(200).send(updatedUser)
+      return res.status(200).send(user)
     } catch (e) {
       res.status(400).send(e)
     }
@@ -83,9 +87,9 @@ export const UsersController = {
       const admin = req.user as any
       const adminId = admin?.dataValues?.id
 
-      const user = await models.user.findOne({
+      const user = (await models.user.findOne({
         where: { id, createdBy: adminId },
-      })
+      })) as any
 
       if (!user) {
         return res.status(404).send()
@@ -96,6 +100,7 @@ export const UsersController = {
       user.ativo = false
 
       user.save()
+      user.destroy()
 
       return res.status(204).send()
     } catch (e) {
