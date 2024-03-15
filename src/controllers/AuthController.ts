@@ -67,9 +67,7 @@ export const AuthController = {
 
       await models.admin.create({ username, password })
 
-      const tokenObj = issueToken(username)
-
-      return res.status(200).send(tokenObj)
+      return res.status(200).send()
     } catch (e) {
       res.status(400).send(e)
     }

@@ -13,14 +13,9 @@ services:
       - '3306:3306'
     volumes:
       - ./mysql:/var/lib/mysql
-    networks:
-      - dev-network
 
   server:
     container_name: node_server
-    build:
-      context: .
-      dockerfile: ./Dockerfile
     image: test_server
     restart: always
     environment:
@@ -34,15 +29,6 @@ services:
     depends_on:
       - db
     ports:
-      - 4000:4000
+      - 4001:4000
     volumes:
       - ./:/usr/src/app
-    working_dir: /usr/src/app
-    networks:
-      - dev-network
-    tmpfs:
-      - /tmp
-
-networks:
-  dev-network:
-    driver: bridge
